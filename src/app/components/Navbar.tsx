@@ -70,10 +70,10 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Status Badges & Mobile Menu Toggle */}
-          <div className="flex items-center gap-3.5 sm:gap-5">
+          <div className="flex items-center gap-2.5 sm:gap-5 shrink-0">
             {/* Plan Counter */}
             <Link
-              href="/my-plan"
+              href="/my-plan?tab=today"
               className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer"
             >
               <span className="text-xs sm:text-sm font-medium text-white/90 group-hover:text-white transition-colors">
@@ -86,7 +86,7 @@ export default function Navbar() {
 
             {/* Saved Counter */}
             <Link
-              href="/my-plan"
+              href="/my-plan?tab=saved"
               className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer"
             >
               <span className="text-xs sm:text-sm font-medium text-white/90 group-hover:text-white transition-colors">
@@ -133,15 +133,28 @@ export default function Navbar() {
               Workouts
             </Link>
             <Link
-              href="/my-plan"
+              href="/my-plan?tab=today"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`w-full block px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                 isMyPlan
                   ? 'bg-[#1e232d] text-[#ccff00]'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
               }`}
             >
-              My Plan
+              <span>Today&apos;s Plan</span>
+              <span className="px-2 py-0.5 rounded-full bg-[#ccff00] text-black text-xs font-bold">
+                {planCount}
+              </span>
+            </Link>
+            <Link
+              href="/my-plan?tab=saved"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
+            >
+              <span>Saved Workouts</span>
+              <span className="px-2 py-0.5 rounded-full border border-white/30 text-white text-xs font-semibold">
+                {savedCount}
+              </span>
             </Link>
           </div>
         )}

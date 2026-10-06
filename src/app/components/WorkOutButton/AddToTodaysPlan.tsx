@@ -24,12 +24,12 @@ const AddToTodaysPlan = ({ workout }: { workout: WorkoutType }) => {
   };
 
   return (
-    <div>
+    <div className="w-full sm:w-auto">
       <button
         type="button"
         onClick={addToToday}
         disabled={isAdded}
-        className={`inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-extrabold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)] ${
+        className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-extrabold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(204,255,0,0.2)] ${
           isAdded
             ? 'bg-[#ccff00]/70 text-black cursor-default'
             : 'bg-[#ccff00] hover:bg-[#b8e600] text-black active:scale-95'

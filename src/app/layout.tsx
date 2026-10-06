@@ -26,21 +26,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-theme="dark"
+      style={{ colorScheme: 'dark' }}
       className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#09090b] text-[#f4f4f5]">
         <WorkoutContext>
-
-        <Navbar></Navbar>
-
-        <div> 
-          {children}
-        </div>
-        <Footer></Footer>
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </WorkoutContext>
-        <ToastContainer />
-        </body>
+        <ToastContainer theme="dark" position="bottom-right" autoClose={3000} />
+      </body>
     </html>
   );
 }

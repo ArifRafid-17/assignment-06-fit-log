@@ -24,12 +24,12 @@ const SaveForLater = ({ workout }: { workout: WorkoutType }) => {
   };
 
   return (
-    <div>
+    <div className="w-full sm:w-auto">
       <button
         type="button"
         onClick={saveLater}
         disabled={isSaved}
-        className={`inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border text-xs tracking-wider transition-all font-semibold ${
+        className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border text-xs tracking-wider transition-all font-semibold ${
           isSaved
             ? 'bg-[#14171d] border-[#ccff00]/40 text-[#ccff00] cursor-default'
             : 'bg-[#14171d] hover:bg-[#1c212b] border-white/10 hover:border-white/20 text-white active:scale-95'

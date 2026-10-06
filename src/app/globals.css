@@ -7,16 +7,29 @@
   color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  color-scheme: dark !important;
+  background-color: #09090b !important;
+  color: #f4f4f5 !important;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: #09090b !important;
+  color: #f4f4f5 !important;
   font-family: var(--font-sans), system-ui, sans-serif;
+  color-scheme: dark !important;
+  overflow-x: hidden;
+}
+
+/* Force dark mode even if user's device/browser preference is light mode */
+@media (prefers-color-scheme: light) {
+  :root,
+  html,
+  body {
+    color-scheme: dark !important;
+    background-color: #09090b !important;
+    color: #f4f4f5 !important;
+  }
 }
 
