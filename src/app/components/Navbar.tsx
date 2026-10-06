@@ -1,28 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import logo from "../assets/logo.png";
+import { workoutContext } from '@/Context/WorkoutContext';
+import { WorkoutType } from '../types';
 
-interface NavbarProps {
-  planCount?: number;
-  savedCount?: number;
-  initialTab?: 'workouts' | 'my-plan';
-}
-
-export default function Navbar({
-  planCount = 0,
-  savedCount = 0,
-  initialTab = 'workouts',
-}: NavbarProps) {
-  const [activeTab, setActiveTab] = useState<'workouts' | 'my-plan'>(initialTab);
+export default function Navbar() {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleTabClick = (tab: 'workouts' | 'my-plan') => {
-    setActiveTab(tab);
-    setIsMobileMenuOpen(false);
+  const { todaysplan, savedworkout } = useContext(workoutContext) as {
+    todaysplan?: WorkoutType[];
+    savedworkout?: WorkoutType[];
   };
+
+  const planCount = todaysplan?.length || 0;
+  const savedCount = savedworkout?.length || 0;
+
+  const isMyPlan = pathname === '/my-plan';
+  const isWorkouts = pathname === '/' || pathname.startsWith('/workout');
 
   return (
     <header className="w-full bg-[#0d0f12] border-b border-white/5 sticky top-0 z-50">
@@ -48,35 +47,33 @@ export default function Navbar({
 
           {/* Center: Navigation Switcher (Desktop) */}
           <nav className="hidden md:flex items-center bg-[#15181f]/80 p-1 rounded-xl border border-white/5">
-            <button
-              type="button"
-              onClick={() => handleTabClick('workouts')}
+            <Link
+              href="/"
               className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
-                activeTab === 'workouts'
+                isWorkouts
                   ? 'bg-[#1e232d] text-[#ccff00] shadow-sm'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
               Workouts
-            </button>
-            <button
-              type="button"
-              onClick={() => handleTabClick('my-plan')}
+            </Link>
+            <Link
+              href="/my-plan"
               className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
-                activeTab === 'my-plan'
+                isMyPlan
                   ? 'bg-[#1e232d] text-[#ccff00] shadow-sm'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
               My Plan
-            </button>
+            </Link>
           </nav>
 
           {/* Right: Status Badges & Mobile Menu Toggle */}
           <div className="flex items-center gap-3.5 sm:gap-5">
             {/* Plan Counter */}
             <Link
-              href="/plan"
+              href="/my-plan"
               className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer"
             >
               <span className="text-xs sm:text-sm font-medium text-white/90 group-hover:text-white transition-colors">
@@ -89,7 +86,7 @@ export default function Navbar({
 
             {/* Saved Counter */}
             <Link
-              href="/saved"
+              href="/my-plan"
               className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer"
             >
               <span className="text-xs sm:text-sm font-medium text-white/90 group-hover:text-white transition-colors">
@@ -124,28 +121,28 @@ export default function Navbar({
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-3 border-t border-white/5 space-y-1">
-            <button
-              type="button"
-              onClick={() => handleTabClick('workouts')}
-              className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                activeTab === 'workouts'
+            <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`w-full block px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                isWorkouts
                   ? 'bg-[#1e232d] text-[#ccff00]'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
               }`}
             >
               Workouts
-            </button>
-            <button
-              type="button"
-              onClick={() => handleTabClick('my-plan')}
-              className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                activeTab === 'my-plan'
+            </Link>
+            <Link
+              href="/my-plan"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`w-full block px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                isMyPlan
                   ? 'bg-[#1e232d] text-[#ccff00]'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
               }`}
             >
               My Plan
-            </button>
+            </Link>
           </div>
         )}
 

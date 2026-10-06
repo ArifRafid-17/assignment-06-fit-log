@@ -1,6 +1,8 @@
-import React from 'react';
 import Image from 'next/image';
 import { WorkoutType } from '@/app/types';
+import AddToTodaysPlan from '@/app/components/WorkOutButton/AddToTodaysPlan';
+import SaveForLater from '@/app/components/WorkOutButton/SaveForLater';
+
 
 interface props {
   params: Promise<{ id: string }>;
@@ -137,42 +139,9 @@ const IdPage = async ({ params }: props) => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mt-9">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs tracking-wider uppercase transition-all active:scale-95 shadow-[0_0_20px_rgba(204,255,0,0.2)]"
-            >
-              <svg
-                className="w-4 h-4 shrink-0"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                viewBox="0 0 24 24"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-                <line x1="12" y1="14" x2="12" y2="18" />
-                <line x1="10" y1="16" x2="14" y2="16" />
-              </svg>
-              <span>Add to today&apos;s plan</span>
-            </button>
+            <AddToTodaysPlan workout= {workout}></AddToTodaysPlan>
 
-            <button
-              type="button"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#14171d] hover:bg-[#1c212b] border border-white/10 hover:border-white/20 text-white font-semibold text-xs tracking-wider transition-all active:scale-95"
-            >
-              <svg
-                className="w-4 h-4 shrink-0 text-zinc-400"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-              </svg>
-              <span>Save for later</span>
-            </button>
+           <SaveForLater workout= {workout}></SaveForLater>
           </div>
 
         </div>
