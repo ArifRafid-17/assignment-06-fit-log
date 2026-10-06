@@ -9,12 +9,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative w-5 h-5 flex items-center justify-center">
+          <div className="relative w-5 h-5 shrink-0 flex items-center justify-center">
             <Image
               src={logo}
               alt="FitLog Logo"
               width={20}
               height={20}
+              unoptimized
               className="w-5 h-5 object-contain select-none"
             />
           </div>

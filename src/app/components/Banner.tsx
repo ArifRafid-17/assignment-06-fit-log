@@ -41,6 +41,7 @@ export default function Banner() {
               src={bannerImg}
               alt="Workout Exercise Demonstration"
               fill
+              unoptimized
               className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] select-none"
               priority
             />

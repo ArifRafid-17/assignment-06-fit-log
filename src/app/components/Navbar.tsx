@@ -30,13 +30,14 @@ export default function Navbar() {
           
           {/* Left: Brand / Logo */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="relative w-6 h-6 flex items-center justify-center transition-transform group-hover:scale-105 duration-200">
+            <div className="relative w-6 h-6 shrink-0 flex items-center justify-center transition-transform group-hover:scale-105 duration-200">
               <Image
                 src={logo}
                 alt="FitLog Logo"
                 width={24}
                 height={24}
                 priority
+                unoptimized
                 className="w-6 h-6 object-contain select-none"
               />
             </div>
